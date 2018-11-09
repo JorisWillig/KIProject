@@ -40,11 +40,11 @@ int main() {
 
   // build actors
   auto &cow_node = find_cow_node(map.graph());
-  auto &cow = s.build_actor<Cow>(map.graph(), cow_node);
-  auto &hare = s.build_actor<Hare>(map.graph());
+  auto &cow = s.build_actor<actors::Cow>(map.graph(), cow_node);
+  auto &hare = s.build_actor<actors::Hare>(map.graph());
   hare.set_cow(cow);
   math::vector2d center{512.0, 384.0};
-  auto &tester = s.build_actor<Tester>(center);
+  auto &tester = s.build_actor<actors::Tester>(center);
 
   // Maak een event_source aan (hieruit kun je alle events halen, zoals
   // toetsaanslagen)

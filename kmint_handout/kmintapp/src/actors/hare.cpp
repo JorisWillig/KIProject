@@ -3,6 +3,7 @@
 #include "kmint/random.hpp"
 
 using namespace kmint;
+namespace actors {
 
 static const char *hare_image = "resources/rabbit.png";
 
@@ -31,3 +32,4 @@ void Hare::act(kmint::delta_time dt) {
     }
   }
 }
+} // namespace actors

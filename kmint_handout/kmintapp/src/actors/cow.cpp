@@ -1,8 +1,9 @@
 #include "cow.h"
 #include "kmint/random.hpp"
 using namespace kmint;
-
+namespace actors {
 static const char *cow_image = "resources/cow.png";
+
 Cow::Cow(map::map_graph const &g, map::map_node const &initial_node)
     : play::map_bound_actor{g, initial_node}, drawable_{*this,
                                                         kmint::graphics::image{
@@ -17,3 +18,4 @@ void Cow::act(delta_time dt) {
     t_passed_ = from_seconds(0);
   }
 }
+} // namespace actors

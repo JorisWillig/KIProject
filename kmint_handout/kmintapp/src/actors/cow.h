@@ -3,15 +3,20 @@
 #include "kmint/map/map.hpp"
 #include "kmint/play.hpp"
 #include "kmint/primitives.hpp"
+namespace actors {
 
 class Cow : public kmint::play::map_bound_actor {
 public:
   Cow(kmint::map::map_graph const &g, kmint::map::map_node const &initial_node);
+
   // wordt elke game tick aangeroepen
   void act(kmint::delta_time dt) override;
+
   kmint::ui::drawable const &drawable() const override { return drawable_; }
+
   // als incorporeal false is, doet de actor mee aan collision detection
   bool incorporeal() const override { return false; }
+
   // geeft de radius van deze actor mee. Belangrijk voor collision detection
   kmint::scalar radius() const override { return 16.0; }
 
@@ -23,3 +28,4 @@ private:
   // edge_type const *next_edge_{nullptr};
   // edge_type const *pick_next_edge();
 };
+} // namespace actors
