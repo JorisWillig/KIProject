@@ -1,14 +1,15 @@
-#include "dijkstra.h"
+#include "astar.h"
 #include <iostream>
 #include <limits>
 #include <stack>
 #include <vector>
 
 namespace pathfinding {
-Path Dijkstra::findPath(map::map_graph& graph, const map::map_node* start,
+Path Astar::findPath(map::map_graph& graph, const map::map_node* start,
     const map::map_node* target)
 {
     m_graph = &graph;
+    m_target = target;
     Path path{ start, target };
     // fill the queue with all the nodes
     m_weights[start] = 0;
@@ -20,7 +21,7 @@ Path Dijkstra::findPath(map::map_graph& graph, const map::map_node* start,
     return path;
 }
 
-float Dijkstra::getWeight(const map::map_node& node) const
+float Astar::getWeight(const map::map_node& node) const
 {
     auto it = m_weights.find(&node);
     if (it != m_weights.end()) {
@@ -30,7 +31,7 @@ float Dijkstra::getWeight(const map::map_node& node) const
     }
 }
 
-void Dijkstra::buildPath(Path& path)
+void Astar::buildPath(Path& path)
 {
     std::map<const map::map_node*, const map::map_node*> previousNodes{};
     while (!m_nodeQueue.empty()) {
@@ -67,12 +68,12 @@ void Dijkstra::buildPath(Path& path)
     }
 }
 
-bool Dijkstra::hasCalculatedWeight(const map::map_node& node) const
+bool Astar::hasCalculatedWeight(const map::map_node& node) const
 {
     return m_weights.find(&node) != m_weights.cend();
 }
 
-const map::map_node& Dijkstra::getOtherNode(const map::map_edge& edge, const map::map_node& currentNode) const
+const map::map_node& Astar::getOtherNode(const map::map_edge& edge, const map::map_node& currentNode) const
 {
     if (&currentNode == &edge.from()) {
         return edge.to();

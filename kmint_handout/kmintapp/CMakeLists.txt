@@ -22,7 +22,7 @@ add_executable(kmintapp
         src/pathfinding/dijkstra.cpp
         src/pathfinding/dijkstra.h
         src/pathfinding/pathfinder.h
-        src/pathfinding/path.h)
+        src/pathfinding/path.h src/pathfinding/astar.cpp src/pathfinding/astar.h)
 
 target_compile_features(kmintapp PUBLIC cxx_std_17)
 target_link_libraries(kmintapp PRIVATE kmint)
