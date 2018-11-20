@@ -20,7 +20,16 @@ private:
 
         bool operator()(const map::map_node* lhs, const map::map_node* rhs)
         {
-            return (getHeuristic(lhs) + astar.getWeight(*lhs)) > (getHeuristic(rhs) + astar.getWeight(*rhs));
+            return getCompareValue(lhs) < getCompareValue(rhs);
+        }
+
+        float getCompareValue(const map::map_node* node)
+        {
+            if (astar.hasCalculatedWeight(*node)) {
+                return getHeuristic(node) + astar.getWeight(*node);
+            } else {
+                return astar.getWeight(*node);
+            }
         }
 
         float getHeuristic(const map::map_node* node)
